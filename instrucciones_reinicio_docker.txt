@@ -1,0 +1,34 @@
+========================================================================
+PASOS PARA REINICIAR Y CORRER EL ENTORNO DOCKER DESDE CERO
+========================================================================
+
+1. ABRIR TERMINAL
+   Abre PowerShell o Símbolo del Sistema (CMD) en la ruta de tu proyecto:
+   C:\Users\RC\Desktop\proyectoSistemas
+
+2. DETENER Y ELIMINAR CONTENEDORES, REDES Y VOLÚMENES
+   Ejecuta el siguiente comando para borrar todo el entorno actual:
+
+   docker compose down --volumes --remove-orphans
+
+3. LIMPIAR CACHÉ DE COMPILACIÓN (OPCIONAL)
+   Para garantizar que las imágenes se construyan completamente limpias:
+
+   docker builder prune -f
+
+4. COMPILAR Y LEVANTAR EL ENTORNO
+   Ejecuta el comando para construir las imágenes y escalar las réplicas PHP:
+
+   docker compose up -d --build --scale php=2
+
+5. VERIFICAR CONTENEDORES ACTIVOS
+   Revisa que todos los servicios estén corriendo correctamente:
+
+   docker compose ps
+
+6. PROBAR EL BALANCEADOR DE CARGA
+   Prueba la ejecución ejecutando el comando cURL varias veces:
+
+   curl.exe -s http://localhost/test_balanceo.php
+
+========================================================================
